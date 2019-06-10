@@ -1,0 +1,39 @@
+{%  extends 'base/index.html' %}
+
+{% block content %}
+    <div class="row">
+        <section id="container" class="">
+          <div class="row">
+              <div class="col-lg-12">
+                 <section class="panel">
+                      <header class="panel-heading">
+                        Informacion del banco
+                      </header>
+                      <div class="table-responsive">
+                          <table class="table">
+                             <thead>
+                                 <th>ID BANCO</th>
+                                 <th>NIT BANCO</th>
+                                 <th>NOMBRE BANCO</th>
+                                 <th>DIRECCION BANCO</th>
+                                 <th>TELEFONO BANCO</th>
+                             </thead>
+                             <tbody>
+                                 {% for banco in bancos %}
+                                     <tr>
+                                        <td>{{ banco.id_banco }}</td>
+                                        <td>{{ banco.nit }}</td>
+                                        <td>{{ banco.nombre }}</td>
+                                        <td>{{ banco.direccion }}</td>
+                                        <td>{{ banco.telefono }}</td>
+                                     </tr>
+                                 {% endfor %}
+                             </tbody>
+                          </table>
+                      </div>
+                 </section>
+              </div>
+          </div>
+        </section>
+    </div>
+{%  endblock %}
