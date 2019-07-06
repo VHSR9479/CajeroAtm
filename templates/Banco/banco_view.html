@@ -4,19 +4,22 @@
     <div class="row">
         <section id="container" class="">
           <div class="row">
-              <div class="col-lg-12">
+              <div class="col-lg-12" >
                  <section class="panel">
+                       {{ruta|safe}}
                       <header class="panel-heading">
-                        Informacion del banco
+                        INFORMACION DEL BANCO
                       </header>
-                      <div class="table-responsive">
+                      <div class="table-responsive" style="width: 80%; margin: 0 auto;">
                           <table class="table">
                              <thead>
                                  <th>ID BANCO</th>
                                  <th>NIT BANCO</th>
                                  <th>NOMBRE BANCO</th>
                                  <th>DIRECCION BANCO</th>
-                                 <th>TELEFONO BANCO</th>
+                                 <th>TELEFONO BANCO </th>
+                                 <th>EDITAR</th>
+                                 <th>ELIMINAR</th>
                              </thead>
                              <tbody>
                                  {% for banco in bancos %}
@@ -26,6 +29,18 @@
                                         <td>{{ banco.nombre }}</td>
                                         <td>{{ banco.direccion }}</td>
                                         <td>{{ banco.telefono }}</td>
+                                        <td>
+                                            <a class="btn btn-success" href="/bancoEdit/{{ banco.id_banco }}"  title="EDITAR ({{ banco.nombre }}) ">
+                                              <span class="icon_pencil-edit"></span>
+                                                <b>Editar</b>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-danger" href="/bancoDelete/{{ banco.id_banco }}" title="ELIMINAR ({{ banco.nombre }}) ">
+                                              <span class="icon_close_alt2"></span>
+                                                <b>Eliminar</b>
+                                            </a>
+                                        </td>
                                      </tr>
                                  {% endfor %}
                              </tbody>

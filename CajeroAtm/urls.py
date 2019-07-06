@@ -15,11 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from Atm.views import HolaMundo
-from Atm.views import banco
+from Atm.views import bancoView
+from Atm.views import bancoSave
+from Atm.views import bancoEdit
+from Atm.views import bancoDelete
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', HolaMundo),
-    url(r'^banco/(\w+)/$', banco),
+    url(r'^$', bancoView),
+    url(r'^banco/(\w+)/$', bancoSave, name="formBanco"),
+    url(r'^bancoEdit/(\w+)/$', bancoEdit, name="updateBanco"),
+    url(r'^bancoDelete/(\w+)/$', bancoDelete, name="updateDelete"),
 ]

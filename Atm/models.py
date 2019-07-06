@@ -6,7 +6,7 @@ from django.db import models
 # Modelo para La base de datos Cajero ( Sistema para emular un modelo de negocio para un cajero de banco )
 # Modelo para Banco
 class Banco(models.Model):
-    id_banco  = models.IntegerField(primary_key=True, unique=True, editable=False)
+    id_banco  = models.IntegerField(primary_key=True, unique=True, editable=True)
     nit       = models.CharField(max_length=10)
     nombre    = models.CharField(max_length=45)
     direccion = models.CharField(max_length=45)
@@ -14,7 +14,7 @@ class Banco(models.Model):
 
 # Modelo para Cajero con referencia a Banco
 class Cajero(models.Model):
-    id_cajero = models.IntegerField(primary_key=True, unique=True, editable=False)
+    id_cajero = models.IntegerField(primary_key=True, unique=True, editable=True)
     id_banco  = models.ForeignKey(Banco, on_delete= models.CASCADE)
     saldo     = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
     ubicacion = models.CharField(max_length=45)
@@ -22,22 +22,22 @@ class Cajero(models.Model):
 
 # Modelo para Estado
 class Estado(models.Model):
-    id_estado   = models.IntegerField(primary_key=True, unique=True, editable=False)
+    id_estado   = models.IntegerField(primary_key=True, unique=True, editable=True)
     descripcion = models.CharField(max_length=45)
 
 # Modelo para Producto
 class Producto(models.Model):
-    id_producto = models.IntegerField(primary_key=True, unique=True, editable=False)
+    id_producto = models.IntegerField(primary_key=True, unique=True, editable=True)
     descripcion = models.CharField(max_length=45)
 
 # Modelo para Tipo Identificacion
 class Tipo_identificacion(models.Model):
-    id_identificacion = models.IntegerField(primary_key=True, unique=True, editable=False)
+    id_identificacion = models.IntegerField(primary_key=True, unique=True, editable=True)
     descripcion       = models.CharField(max_length=45)
 
 # Modelo para usuario con referencia a tipo de usuario
 class usuario(models.Model):
-    id_usuario     = models.IntegerField(primary_key=True, unique=True, editable=False)
+    id_usuario     = models.IntegerField(primary_key=True, unique=True, editable=True)
     identificacion = models.CharField(max_length= 15)
     tipo_identificacion = models.ForeignKey(Tipo_identificacion, on_delete= models.CASCADE)
     nombre         = models.CharField(max_length=45)
@@ -50,7 +50,7 @@ class usuario(models.Model):
 
 # Modelo para Cuenta con referencia  a Banco, Producto, Usuario y Estado
 class Cuenta(models.Model):
-    id_cuenta = models.IntegerField(primary_key=True, unique=True, editable=False)
+    id_cuenta = models.IntegerField(primary_key=True, unique=True, editable=True)
     numero    = models.CharField(max_length=45)
     id_banco  = models.ForeignKey(Banco, on_delete=models.CASCADE)
     id_producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
@@ -62,13 +62,13 @@ class Cuenta(models.Model):
 
 # Modelo para Movimiento
 class Movimiento(models.Model):
-    id_movimiento = models.IntegerField(primary_key=True, unique=True, editable=False)
+    id_movimiento = models.IntegerField(primary_key=True, unique=True, editable=True)
     descripcion   = models.CharField(max_length=45)
 
 
 # Modelo para Transaccion  con relacion a cajero
 class Transaccion(models.Model):
-    id_transaccion = models.IntegerField(primary_key=True, unique=True, editable=False)
+    id_transaccion = models.IntegerField(primary_key=True, unique=True, editable=True)
     id_cajero      = models.ForeignKey(Cajero, on_delete=models.CASCADE)
     fecha_creacion = models.DateTimeField('date published')
     ind_estado     = models.ForeignKey(Estado, on_delete=models.CASCADE)
@@ -76,7 +76,7 @@ class Transaccion(models.Model):
 
 # Modelo para  Tarjeta con referencia a cuenta y estado
 class Tarjeta(models.Model):
-    id_tarjeta   = models.IntegerField(primary_key=True, unique=True, editable=False)
+    id_tarjeta   = models.IntegerField(primary_key=True, unique=True, editable=True)
     numero       = models.CharField(max_length=45)
     id_cuenta    = models.ForeignKey(Cuenta, on_delete=models.CASCADE)
     id_estado    = models.ForeignKey(Estado, on_delete=models.CASCADE)
@@ -87,7 +87,7 @@ class Tarjeta(models.Model):
 
 # Modelo para Detalle con referencia a Transaccion , movimiento, cuenta y tarjeta
 class Detalle(models.Model):
-    id_detalle      = models.IntegerField(primary_key=True, unique=True, editable=False)
+    id_detalle      = models.IntegerField(primary_key=True, unique=True, editable=True)
     id_transaccion  = models.ForeignKey(Transaccion, on_delete=models.CASCADE)
     id_movimiento   = models.ForeignKey(Movimiento, on_delete=models.CASCADE)
     id_cuenta       = models.ForeignKey(Cuenta, on_delete=models.CASCADE)
